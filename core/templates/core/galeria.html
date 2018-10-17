@@ -1,0 +1,29 @@
+
+{% load static %}
+
+{% block javascript %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+    
+{% endblock javascript %}
+
+
+<div class="contenido2">
+
+    <div>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Oso.jpg' %}"><img class="Oso" title="El es Oso es un perro muy tierno y dulce" src="{%static 'core/img/rescatados/Oso.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Maya.jpg' %}"><img class="Maya" title="Ella es Maya, es muy pequeña pero muy juguetona" src="{%static 'core/img/rescatados/Maya.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Wifi.jpg' %}"><img class="Wifi" title="El es Wifi, y como bien dice su nombre tendra una conexion unica contigo" src="{%static 'core/img/rescatados/Wifi.jpg' %}"></a>
+    </div>
+
+    <div>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Chocolate.jpg' %}"><img class="Chocolate" title="El es Chocolate, le gusta comer mucho y divertirse" src="{%static 'core/img/rescatados/Chocolate.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Pexel.jpg' %}"><img class="Pexel" title="Pexel es puro amor en un frasco pequeño, siempre quiere cariño" src="{%static 'core/img/rescatados/Pexel.jpg' %}"></a>
+    </div>
+
+    <div>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Bigotes.jpg' %}"><img class="Bigotes" title="El es bigotes y como te das cuenta, tendras que cuidar tus peluches" src="{%static 'core/img/rescatados/Bigotes.jpg' %}"></a>
+        <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Luna.jpg' %}"><img class="Luna" title="Ella es Luna, es una linda perrito que te acompañara a todos lados" src="{%static 'core/img/rescatados/Luna.jpg' %}"></a>  
+    </div>
+
+</div>

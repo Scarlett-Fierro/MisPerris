@@ -1,0 +1,572 @@
+@import url('https://fonts.googleapis.com/css?family=Codystar');
+
+
+*{
+    margin:0%; 
+    padding: 0%;
+    font-family: Codystar; 
+} /*Los cambios que esten dentro de aqui se le aplican a toda la pagina*/
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+header{
+    width: 100%;
+    height: 90px;
+    background:rgb(109, 204,170);
+    opacity: 0.8;
+    
+}
+
+/* 
+
+
+.divfor{ /*Esta clase es para el Div del formulario */
+   /* background-color:rgb(109, 204, 170);
+    /*background-image: url('../img/nombre.jpg');  asi retrocedo a imagen*/
+    /*background-image: url('https://es.best-wallpaper.net/wallpaper/1920x1080/1607/Golden-Retriever-three-cute-puppies_1920x1080.jpg');
+    /*Arriba estamos colocando una imagen de internet como fondo muy boni adasd */
+    /*background-image: url('http://4.bp.blogspot.com/-2vyQRWsO7C0/Vh6x1Vn3eRI/AAAAAAABGXU/pbL4DyFaHwU/s00/lindos-cachorritos.jpg') 
+    font-weight: bold;
+    /ESTA CLASE LA HICE PARA EL FORMULARIO, PERO PARECE QUE BASTABA CON LA CLASE "ROW" DE ABAJO
+}
+*/
+
+.sololetra{
+    font-weight: bold;
+}
+
+/*
+.soloform{
+    background-color: rgb(109, 204, 170);
+    padding-top: 50px;
+    padding-bottom: 50px; ESTA CLASE LA HICE PARA EL FORMULARIO, PERO PARECE QUE BASTABA CON LA CLASE "ROW" DE ABAJO
+    
+}
+*/
+
+
+/* Esta clase es para el boton Enviar del formulario */
+.botonenviar{
+    margin-left: 31%;
+    width: 85px;
+}
+
+/* Esta clase es para el boton Ingresar del login */
+.botoningresar{
+    width: 103px;
+}
+
+
+/* La clase ROW es la que envuelve al formulario completo y esta clase se saca inspeccionando la interfaz del formulario, yo no lo hice xd */
+.row{
+    width: 101%;
+    background-color: rgb(109, 204, 170);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-weight: bold;
+}
+
+.logo{
+    width: 25%; 
+    height: 70px;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.navegacion{
+    float: right;
+    margin-right: 7%;
+    margin-top: -7px;
+}
+
+.navegacion li{
+    display: inline-block; /*Sirve para que todos se formen en una linea// le ponemos LI para que tome todos los elementos de Listas */
+    margin-left:0px; /*Sirve para darle margenes al lado izquierdo */
+    margin-top: 16px; /*Sirve para darle margenes desde arriba */
+    width:119px; /*23% */ /*HERE HERE HERE HERE HERE HERE HERE HERE HERE*/
+    height:36px;
+    background-color: rgb(109, 204,170); /*Sirve para darle el color a la lista entera*/
+    text-align: center; /*Sirve para centrar el texto de manera horizontal(no en medio de la lista solo en medio horizontalmentexd) */ 
+    padding-top:14px; /*Sirve para los margenes de arriba solo dentro de la lista */
+    transition:border-radius 0.5s;
+}
+
+.navegacion li:hover{/*Lo que esta dentro de esto se va a activar cuando se pase el cursor por encima */
+    border-radius:20px; /*Indica cuando tiempo se queda el efecto o se demora en irse  */
+}
+
+.navegacion li a{
+    color: white; /*Sirve para darle color a las letras que esten dentro de la lista en las etiquetas A*/
+    /*font-weight:bold; /*Sirve para darle formato de Negrita a las letras */
+    text-decoration: none; /*El "none" Es para quitar el subrrayado a los textos*/
+}
+
+
+
+
+.landing{
+    background-color:rgb(109, 204,170) ;
+    width: 100%; /*El "100%" sirve para darle el formato ajustable, hace que se ajuste a toda la pagina preferentemente se usa en el ancho para que ocupe o se ajuste a todo el ancho de la pagina*/
+    height: 660px; 
+}
+
+.bx-wrapper{
+    background-color:rgb(109, 204,170)!important; /*Este es el color para el fondo de Slider*/
+    border: none!important;
+    box-shadow: none!important; 
+    /* El important sirve para que dicho metodo no sea sobrescrito cuando hay uno antes */
+}
+
+.bx-caption{ /* Esta es la clase para la parte del Slider en la que se puede escribir*/
+    background-color: transparent !important;
+    width: 12% !important;
+    margin-left: 19% !important;
+    margin-bottom: 10% !important;
+}
+
+.landing_image{
+    width: 900px;
+    height: 400px;
+    display: block; /*<- este atributo va de la mano con el de abajo "Margin: auto;" para que se pueda centra */
+    margin: auto; /*<- este atributo va de la mano con el de arriba "display: block;" para que la imagen se pueda centrar*/
+    padding-top: 30px;
+}
+
+.imagen_landing{
+    width:900px;
+    height:400px;
+    margin:auto;
+    display:block;
+    border-radius: 10px;
+}
+
+
+.bx-caption span{ /*Esta clase es para la letra de la parte del Slider en la que se puede escribir */
+    color: black !important;
+    font-size: 17px !important;
+    text-shadow: 2px 0px 3px white !important;
+   
+}
+
+.numero{
+    color:white;
+    font-size:22px;
+    margin-top: 7%;
+    margin-left: 1.5%;
+}
+
+.eslogan{
+    text-align: center;
+    color:white;
+    font-size:18px; /*Sirve para cambiar el tamaño de fuente*/
+    margin-top: -2%;
+}
+
+.social{
+    float: right;
+    margin-right:50px;
+    margin-top: -3%;
+}
+
+
+.social li{
+    display: inline-block; /*Sirve para ordenar las listas en linea, ya que las listas por defecto se ordenan de arriba hacia abajo*/
+    margin-left: 20px;
+}
+
+.social li img{
+    width: 50px;
+    height: 50px;
+    border-radius: 150px;
+}
+
+.contenido{
+    /*padding: 15px; no se por qué Hali tenia esto aquí*/
+    width: 100%;
+}
+
+footer{
+    height:300;
+    background-color:rgb(230,230,230);
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.color_blanco{
+    color: white;
+}
+
+
+.center_texto{
+    text-align:center;
+}
+
+
+.contenido li{
+    list-style: none;
+    float: left;
+}
+
+
+
+/* ---------------------------------------------------------------------*/
+.Rescate{
+    text-align: left;
+    margin-left: 40%;
+}
+
+.EtapaUno{
+    text-align: left;
+    margin-left: 43%;
+    font-size:15px;
+    margin-top: -12px;
+    color: gray;
+}
+
+.texto{
+    margin-right: 53%;
+    float: right;
+    font-size:10px;
+    color: gray;
+}
+
+.texto2{
+    text-align: left;
+    margin-left: 31.5%;
+    font-size:10px;
+    color: gray;
+}
+
+.imgRescate{
+    width: 300px;
+    height: 200px;
+    display: block;
+    margin: auto;
+    margin-right: 54%;
+    margin-top: 2%;
+    margin-bottom: 80px;
+    border-radius:20px;
+    
+}
+
+.imgComida{
+    width: 300px;
+    height: 200px;
+    display: block;
+    margin: auto;
+    margin-left: 50%;
+    margin-top: -25%;
+    border-radius: 20px;
+}
+
+.Crowdfunding{
+    text-align: right;
+    margin-right: 35%;
+    margin-left: 50%;
+}
+
+.Financiamiento{
+    text-align: right;
+    margin-right: 42%;
+    margin-left: 50%; /* HERE HERE HERE HERE HERE HERE HERE*/
+    font-size:15px;
+    margin-top: -16px;
+    color: gray;
+}
+
+.texto3{
+    /*text-align: right;
+    margin-right: 18.2%;*/
+    margin-left: 50%;
+    font-size:10px;
+    color: gray;
+}
+
+.texto4{
+    /*text-align: right;
+    margin-right: 19%;*/
+    margin-left: 51%;
+    margin-bottom: 2%;
+    font-size:10px;
+    color: gray;
+}
+
+#btn{
+    border: 2px solid;
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 8px;
+    font-weight: bold;
+    margin-left: 50%;
+    margin-bottom: 3%;
+}
+
+.contenido2{
+    width: 100%;
+    background-color: rgb(109, 204,170);
+    display: flex; /*Sirve para usar justificacion de contenido */
+    justify-content: space-between;
+
+}
+
+.contenido2 > div{
+    width: 33%;
+}
+
+.contenido2 img{
+    border-radius:20px;
+}
+
+
+.Oso{
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 7%;
+    border: solid white;
+}
+
+.Chocolate{
+    width: 65%;
+    margin-top: 7%;
+    height: 47%;
+    margin-left: 17%;
+    border: solid white;
+}
+
+.Bigotes{
+    width: 96%;
+    margin-top: 7%;
+    height: 57%;
+    border: solid white; 
+}
+
+.Maya{
+    width: 87%;
+    margin-left: 2%;
+    margin-top: 3%;
+    border: solid white;
+}
+
+.Pexel{
+    width: 65%;
+    height: 42%;
+    margin-top: 5%;
+    margin-left: 17%;
+    border: solid white;
+}
+
+.Luna{
+    width: 96%;
+    margin-top: 5%;
+    height: 32%;
+    border: solid white;
+}
+
+.Wifi{
+    width: 87%;
+    margin-left: 2%;
+    margin-bottom: 10%;
+    margin-top: 3%;
+    border: solid white;
+}
+
+
+
+@media (max-width: 1024px){
+
+    /*.landing_image{
+        width: 100%;
+        height: auto;
+    } */
+
+    .logo{
+        width: auto;
+        height: auto;
+    }
+
+    .imagen_landing{
+        height: auto;
+        width: auto;
+    }
+
+    .bx-caption{
+        /*height: auto !important;*/
+        width: auto !important;
+        margin-left: 18% !important;
+    }
+
+
+    .eslogan{
+        float: none;
+        margin-bottom: 7%;
+        margin-top: 3%;
+        margin-left: 0px;
+        text-align: center;
+    }
+
+    .social{
+        float: none;
+        text-align: center;
+        margin-bottom: 0%; /*AQUI ANTES IBA 10%, SE LO CAMBIE PORQUE ME DEJABA UN ESPACIO EN BLANCO ENCIMA DEL FORMULARIO */ 
+    }
+
+    .numero{
+        margin-left: 0px;
+        text-align: center;
+    }
+
+
+   
+
+    header{
+        height: 350px;
+    }
+
+    .navegacion{
+        float: none;
+        width: 80%;
+        margin-right:0;
+        margin: auto;
+    }
+
+    .navegacion li{
+        width:100%;
+        margin-left: 0%;
+    }
+
+    .landing{
+        height: auto;
+    }
+
+    .desarrollo_mobil_web{
+        text-align: center;
+    }
+    
+    /*-----------------------------------------------*/
+    .Rescate{
+        text-align: center;
+        float: none;
+        margin-left: 0%;
+    }
+
+    .EtapaUno{
+        text-align: center;
+        float: none;
+        margin-left: 0%;
+    }
+    
+    .texto{
+        text-align: center;
+        float: none;
+        margin-left:0%;
+        margin-right:0%;
+    }
+
+    .texto2{
+        text-align: center;
+        float: none;
+        margin-left: 0%;
+    }
+
+    .imgRescate{
+        width: 50%;
+        height: auto;
+        margin-left: 25%;
+    }
+
+    .imgComida{
+        width: 50%;
+        height: auto;
+        margin-left: 25%;
+        margin-top: 0%;
+    }
+
+    .Crowdfunding{
+        text-align: center;
+        float: none;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    .Financiamiento{
+        text-align: center;
+        float: none;
+        margin-left:0%; /* HERE HERE HERE HERE HERE */
+        margin-right:0%; /* HERE HERE HERE HERE HERE HERE*/
+    }
+
+    .texto3{
+        text-align: center;
+        margin-right: 0%;
+        margin-left: 0%;
+        
+    }
+    
+    .texto4{
+        text-align: center;
+        margin-right: 0%;
+        margin-left: 0%;
+    }
+
+    #btn{
+        text-align: center;
+        margin-left: 40%;
+    }
+}
+
+@media(min-width:1025px) {
+
+    .logo{
+        width: auto;
+        height: auto;
+    }    
+    
+    .bx-caption{
+        background-color: transparent !important;
+        width: 12% !important;
+        margin-left: 19% !important;
+        margin-bottom: 10% !important;
+    }
+
+    
+
+}
+
+
+@media (min-width:1400px) {
+
+    .logo{
+        width: auto;
+        height: auto;
+    }
+
+    .bx-caption {
+        margin-left: 24%!important;
+    }
+
+    
+    
+}
+
+@media(min-width:1600px) {
+
+    .logo{
+        width: auto;
+        height: auto;
+    }
+
+    .bx-caption {
+        margin-left:27%!important;
+        margin-bottom: 6% !important;
+    }
+
+   
+
+    
+}

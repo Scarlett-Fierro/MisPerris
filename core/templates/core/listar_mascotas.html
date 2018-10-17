@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+    <h2>Listado de mascotas</h2>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Genero</th>
+            <th>Fecha Ingreso</th>
+            <th>Fecha Nacimiento</th>
+            <th>Foto</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+        </tr>
+
+        {% for m in mascotas %} <!--Esta variable "mascotas" es la que traje de Views, es la variable que contiene todas las mascotas-->
+        <!--y el Views lo mando a buscar a la base de datos-->
+            <tr>
+                <td>{{ a.nombreMascota }}</td>
+                <td>{{ a.raza}}</td>
+                <td>{{ a.genero}}</td>
+                <td>{{ a.fechaIngreso}}</td>
+                <td>{{ a.fechaNacimientoMascota}}</td>
+                <td>{{ a.foto}}</td>
+                <td>{{ a.estado}}</td>
+                <td>
+                    <a href="{% url 'eliminar_mascota' a.id %}">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        
+    </table>
+
+    {% if mensajes %}
+    
+        {% for m in mensajes  %}
+
+        <div>{{ m }}</div>
+        
+        {% endfor %}
+
+    {% else %}
+    {% endif %}
+{% endblock contenido %}

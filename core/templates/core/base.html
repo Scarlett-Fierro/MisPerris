@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mis Perris</title>
+
+    {% load static %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}">
+
+    {% comment %} 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> NO SE PARA QUE SIRVE EXACTAMENTE YA QUE CUANDO LO CAMBIO A GAÑERIA APARECEN LAS FOTOS DEL SLIDER
+    {% endcomment %}
+
+
+ 
+    {% block javascript %}
+        <!-- Luego de ejecutar los enlaces de arriba, aqui se van a ejecutar los enlaces respectivos segun el bloque que se llame  -->
+    {% endblock javascript %}
+
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="{%static 'core/img/logo.png' %}" alt="logo">
+
+        <ul class="navegacion">
+            <li>
+                <a href="{% url 'home' %}">Inicio</a>
+            </li>
+
+            <li>
+                <a href="#">Quienes somos</a> <!-- El "#" se usa para que salga la manito al pasar el cursor por la lista, pero que se mantenga en el sitio (la pagina)  -->
+            </li>
+
+            <li>
+                <a href="#">Servicios</a>
+            </li>
+            <li>
+                <a href="{% url 'formulario' %}">Contáctanos</a>
+            </li>
+
+            {% if request.user.is_authenticated %} <!--Este if es para que el Cerrar sesion solo salga 
+            cuando el usuario tenga una sesion iniciada-->
+            <li>
+                <a href="{% url 'logout' %}">Cerrar sesion</a> <!--Cuando se apreta este boton se sale-->
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}">Iniciar sesion</a> <!--Cuando se apreta este boton se va a la pestaña de login-->
+            </li>
+            {% endif%}
+
+        </ul>
+    </header>
+
+    {% include 'core/slider.html' %}
+
+    {% block contenido %}
+        <!--Aqui se va a ejecutar lo que este dentro de los otros block llamados contenido -->
+    {% endblock contenido %}
+   
+    {% include 'core/galeria.html' %}
+
+    <footer>
+        <p class="desarrollo_mobil_web">Desarrollo Web y Mobil</p>
+        <br>
+        <br>
+        <br>
+    </footer>
+
+</body>
+</html>
+

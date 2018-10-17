@@ -1,0 +1,98 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block javascript %}
+    <script src="{% static 'core/js/validateJquery.js' %}"></script>
+    <script src="{% static 'core/js/validacionesMensajes.js' %}"></script>
+    <script src="{% static 'core/js/validaciones.js' %}"></script>
+    <script src="{% static 'core/js/validadorRut.js' %}" ></script>
+    <script>
+
+            function soloLetras(e){
+                key=e.keyCode || e.wich;
+
+                teclado=String.fromCharCode(key).toLowerCase();
+                letras="qwertyuiopasdfghjklñzxcvbnm áéíóúü";
+                especiales="8-37-38-46-164";
+                teclado_especial=false;
+
+                for(var i in especiales){
+
+                    if(key==especiales[i]){
+                        teclado_especial=true;break;
+                    }
+                }
+                if(letras.indexOf(teclado)==-1 && !teclado_especial){
+
+                    return false;
+                }
+            }
+
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+{% endblock javascript %}
+
+{% block contenido %}
+    <div class="row">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+
+            <form action="" method="POST" id="idformulario_mascota">  <!--Que el "action" este vacio va a hacer que cuando se aprete guardar todo los datos van a ser enviados al Views especificamente dentro del formulario_mascota-->
+                {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
+
+                <div class="col">
+
+
+                    <label for="">Nombre mascota</label>
+                    <br>
+                    <input type="text" name="txtNombreMascota" id="txtNombreMascota" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="">Raza</label>
+                    <br>
+                    <select name="cboRaza" id="cboRaza" class="form-control col-9 sololetra">
+                        <option value="">Seleccionar</option>
+
+                            {% for r in razas %}
+
+                                <option value="{{ r.id }}">{{ r.raza }}</option> <!--Este for se hace para recorrer la variable razas que se creo en Views-->
+                            
+                            {% endfor %}
+
+                    </select>
+                    <br>
+                    <label for="">Genero</label>
+                    <br>
+                    <select name="cboGenero" id="cboGenero" class="form-control col-9 sololetra">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <br>
+                    <label for="">Fecha Ingreso</label>
+                    <br>
+                    <input type="date" name="dateFechaIngreso" id="dateFechaIngreso" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="">Fecha Nacimiento</label>
+                    <br>
+                    <input type="date" name="dateFechaNacimientoMascota" id="dateFechaNacimientoMascota" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="text">Foto</label>
+                    <br>
+                    <input type="text" name="txtCorreoElectronico" id="txtCorreoElectronico" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="">Estado</label>
+                    <br>
+                    <select name="cboEstado" id="cboRegion" class="form-control col-9 sololetra">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <br>
+                    <br>
+                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success botonenviar" >
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock contenido %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <h1>Ingrese sus credenciales</h1>
+    
+    <form action="" method="POST">
+
+        {% csrf_token %}
+
+        <table>
+                {{ form.as_table}} <!--Sirve para imprimir el usuario y contraseña por si solos y el .as_table o as. es para que se ordenen los campos-->
+        </table>
+        
+
+        <input type="submit" value="Login">
+
+    </form>
+
+</body>
+</html>

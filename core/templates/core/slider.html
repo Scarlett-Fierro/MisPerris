@@ -1,0 +1,36 @@
+{% load static %}
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="{%static 'core/js/enchulado.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock javascript %}
+
+
+<div class="landing">
+
+    <div class="slider">
+
+        <div>
+            <img title= ' "El es Copo, un buen amigo que te acompañará siempre a todos lados" ' class="imagen_landing" src="{%static 'core/img/perro.png' %}" alt="Perrito">
+        </div>
+        <div>
+            <img title=' "Estamos felices de tener a Tom en casa. Es un super fiel compañero" ' class="imagen_landing" src="{%static 'core/img/adoptados/Tom.jpg' %}" alt="Perrito Tom">
+        </div>
+        <div>
+            <img title=' "Apolo es un perro muy juguetón, el me alegra cada dia" ' class="imagen_landing" src="{%static 'core/img/adoptados/Apolo.jpg' %}" alt="Perrito Apolo">
+        </div>
+        <div>
+            <img title=' "Duque se ha transformado en mi compañero de aventuras" ' class="imagen_landing" src="{%static 'core/img/adoptados/Duque.jpg' %}" alt="Perrito Duque">
+        </div>
+
+    </div>
+
+    <h1 class="numero">+569 98765431 </h1>
+    <h1 class="eslogan">Rescate y adopcion de perros callejeros</h1>
+    <ul class="social">
+        <li><img src="{%static 'core/img/social-twitter.png' %}" alt="twitter"></li>
+        <li><img src="{%static 'core/img/socialfacebook.png' %}" alt="facebook"></li>
+        <li><img src="{%static 'core/img/social-inst.png' %}" alt="instagram"></li>
+    </ul>
+</div>

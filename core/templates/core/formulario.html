@@ -1,0 +1,108 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block javascript %}
+    <script src="{% static 'core/js/validateJquery.js' %}"></script>
+    <script src="{% static 'core/js/validacionesMensajes.js' %}"></script>
+    <script src="{% static 'core/js/validaciones.js' %}"></script>
+    <script src="{% static 'core/js/validadorRut.js' %}" ></script>
+    <script>
+
+            function soloLetras(e){
+                key=e.keyCode || e.wich;
+
+                teclado=String.fromCharCode(key).toLowerCase();
+                letras="qwertyuiopasdfghjklñzxcvbnm áéíóúü";
+                especiales="8-37-38-46-164";
+                teclado_especial=false;
+
+                for(var i in especiales){
+
+                    if(key==especiales[i]){
+                        teclado_especial=true;break;
+                    }
+                }
+                if(letras.indexOf(teclado)==-1 && !teclado_especial){
+
+                    return false;
+                }
+            }
+
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+{% endblock javascript %}
+
+
+{% block contenido %}
+    <div class="row">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+
+            <form action="" method="POST" id="idformulario">
+
+                <div class="col">
+
+
+                    <label for="">Correo electronico</label>
+                    <br>
+                    <input type="text" name="txtCorreoElectronico" id="txtCorreoElectronico" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="">Rut</label>
+                    <br>
+                    <input type="text" name="txtRut" id="txtRut" class="form-control col-9 sololetra"> <h6 id="mensajerut" class="sololetra">  </h6>
+                        <script>
+                            $("input#txtRut").rut({formatOn: 'keyup'})
+                                    .on('rutInvalido', function(){ 
+                                        //alert('Rut inválido')
+                                        $("#mensajerut").html("rut invalido");
+                                    });
+                            
+                            $("input#txtRut").rut({formatOn: 'blur', validateOn: 'blur'})
+                                    .on('rutInvalido', function(){ 
+                                        $("#mensajerut").html("rut invalido");
+                                    });   
+                        </script>
+                    <br>
+                    <label for="">Nombre Completo</label>
+                    <br>
+                    <input type="text" name="txtNombreCompleto" id="txtNombreCompleto" class="form-control col-9 sololetra" onkeypress="return soloLetras(event)" >
+                    <br>
+                    <label for="">Fecha Nacimiento</label>
+                    <br>
+                    <input type="date" name="txtDateNacimiento" id="txtDateNacimiento" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="">Telefono de contacto</label>
+                    <br>
+                    <input type="number" name="txtTelefono" id="txtTelefono" class="form-control col-9 sololetra">
+                    <br>
+                    <label for="">Región</label>
+                    <br>
+                    <select name="cboRegion" id="cboRegion" class="form-control col-9 sololetra">
+                    <option value="">Seleccionar</option>
+                    </select>
+                    <br>
+                    <label for="">Ciudad</label>
+                    <br>
+                    <select name="cboCiudad" id="cboCiudad" class="form-control col-9 sololetra" disabled="true">
+                    <option value="">Seleccionar</option>
+                    </select>
+                    <br>
+                    <label for="">Tipo vivienda</label>
+                    <br>
+                    <select name="cboVivienda" id="cboVivienda" class="form-control col-9 sololetra">
+                    <option value="">Seleccionar</option>
+                    </select>
+                    <br>
+                    <br>
+                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success botonenviar" >
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock contenido %}
+   
