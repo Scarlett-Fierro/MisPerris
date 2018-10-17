@@ -7,8 +7,9 @@ from django.contrib import messages
 #primero la utentificacion al usuario par aingresar a un View
 from django.contrib.auth.decorators import login_required
 
-
 # Create your views here.
+
+#comentario
 def home(request):
     return render(request, 'core/home.html')
 
