@@ -41,7 +41,8 @@
         <div class="col-md-9">
 
             <form action="" method="POST" id="idformulario">
-
+                {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
+    
                 <div class="col">
 
 
@@ -71,7 +72,7 @@
                     <br>
                     <label for="">Fecha Nacimiento</label>
                     <br>
-                    <input type="date" name="txtDateNacimiento" id="txtDateNacimiento" class="form-control col-9 sololetra">
+                    <input type="date" name="dateNacimiento" id="dateNacimiento" class="form-control col-9 sololetra">
                     <br>
                     <label for="">Telefono de contacto</label>
                     <br>
@@ -81,26 +82,45 @@
                     <br>
                     <select name="cboRegion" id="cboRegion" class="form-control col-9 sololetra">
                     <option value="">Seleccionar</option>
+
+                        {% for r in regiones %}
+                            <option class="sololetra" value="{{ r.id }}">{{ r.nombreRegion }}</option>
+                        {% endfor %}
+
                     </select>
                     <br>
                     <label for="">Ciudad</label>
                     <br>
                     <select name="cboCiudad" id="cboCiudad" class="form-control col-9 sololetra" disabled="true">
                     <option value="">Seleccionar</option>
+
+                        {% for c in ciudades %}
+                            <option class="sololetra" value="{{ c.id }}">{{ c.nombreCiudad }}</option>
+                        {% endfor %}    
+
                     </select>
                     <br>
                     <label for="">Tipo vivienda</label>
                     <br>
                     <select name="cboVivienda" id="cboVivienda" class="form-control col-9 sololetra">
                     <option value="">Seleccionar</option>
+
+                        {% for t in tiposViviendas %}
+                            <option class="sololetra" value="{{ t.id }}">{{ t.nombreVivienda }}</option>
+                        {% endfor %}
+
                     </select>
                     <br>
                     <br>
-                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-success botonenviar" >
+                    <input type="submit" name="btnEnviar" id="btnEnviar" class="btn btn-dark botonenviar" >
+                    <br>
+                    <br>
 
                 </div>
 
             </form>
+
+            <h3>{{ mensaje }}</h3>
 
         </div>
     </div>

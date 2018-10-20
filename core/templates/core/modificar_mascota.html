@@ -42,6 +42,9 @@
             <form action="" method="POST" id="idformulario_mascota">  <!--Que el "action" este vacio va a hacer que cuando se aprete guardar todo los datos van a ser enviados al Views especificamente dentro del formulario_mascota-->
                 {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
 
+                <!--El Type "hidden" es para que el usuario no lo vea-->
+                <input type="hidden" name="txtId" id="txtId" value="{{ mascota.id }}">  <!-- mascota, es la variable que esta siendo enviada desdde el View(controlador)-> def modificar_mascota-->
+
                 <div class="col">
 
                     <!-- <h2>Formulario Mascota</h2>
@@ -50,16 +53,20 @@
                     
                     <label for="">Nombre mascota</label>
                     <br>
-                    <input type="text" name="txtNombreMascota" id="txtNombreMascota" class="form-control col-9 sololetra">
+                    <input type="text" name="txtNombreMascota" id="txtNombreMascota" class="form-control col-9 sololetra" value="{{ mascota.nombreMascota }}">
                     <br>
                     <label for="">Raza</label>
                     <br>
-                    <select name="cboRaza" id="cboRaza" class="form-control col-9 sololetra">
+                    <select name="cboRaza" id="cboRaza" class="form-control col-9 sololetra" value="{{ mascota.razas }}">
                         <option value="">Seleccionar</option>
 
                             {% for r in razas %}
 
-                                <option class="sololetra" value="{{ r.id }}">{{ r.nombreRaza }}</option> <!--Este for se hace para recorrer la variable razas que se creo en Views-->
+                                <option
+                                {% if r.id == mascota.raza.id %}
+                                    {{'selected'}}
+                                {% endif %}
+                                class="sololetra" value="{{ r.id }}">{{ r.nombreRaza }}</option> <!--Este for se hace para recorrer la variable razas que se creo en Views-->
                             
                             {% endfor %}
 
@@ -75,36 +82,40 @@
                     <br>
                     <label for="">Fecha Ingreso</label>
                     <br>
-                    <input type="date" name="dateFechaIngreso" id="dateFechaIngreso" class="form-control col-9 sololetra">
+                    <input type="date" name="dateFechaIngreso" id="dateFechaIngreso" class="form-control col-9 sololetra" value="{{ mascota.fechaNacimientoMascota }}">
                     <br>
                     <label for="">Fecha Nacimiento</label>
                     <br>
-                    <input type="date" name="dateFechaNacimientoMascota" id="dateFechaNacimientoMascota" class="form-control col-9 sololetra">
+                    <input type="date" name="dateFechaNacimientoMascota" id="dateFechaNacimientoMascota" class="form-control col-9 sololetra" value="{{ mascota.fechaIngreso}}"> 
                     <br>
                     <label for="text">Foto</label>
                     <br>
-                    <input type="text" name="txtFoto" id="txtFoto" class="form-control col-9 sololetra">
+                    <input type="text" name="txtFoto" id="txtFoto" class="form-control col-9 sololetra" value="{{ mascota.foto }}">
                     <br>
                     <label for="">Estado</label>
                     <br>
-                    <select name="cboEstado" id="cboEstado" class="form-control col-9 sololetra">
+                    <select name="cboEstado" id="cboEstado" class="form-control col-9 sololetra" value="{{ mascota.estados }}">
                         <option value="">Seleccionar</option>
 
                         {% for e in estados %}
-                            <option class="sololetra" value="{{ e.id }}">{{ e.nombreEstado }}</option>
+                            <option
+                            {% if e.id == mascota.estado.id %}
+                                {{'selected'}}
+                            {% endif %}
+                             class="sololetra" value="{{ e.id }}">{{ e.nombreEstado }}</option>
                         {% endfor %}
 
                     </select>
                     <br>
                     <br>
-                    <input type="submit" name="btnGuardar" id="btnGuardar" class="btn btn-dark botonguardar" value="Guardar">
+                    <input type="submit" name="btnModificar" id="btnModificar" class="btn btn-success" value="Modificar" >
                     <br>
                     <br>
 
                 </div>
 
             </form>
-            
+
             <h3>{{ mensaje }}</h3>
 
         </div>

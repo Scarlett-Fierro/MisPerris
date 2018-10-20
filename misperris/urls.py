@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#El unico archivo URL que se ejecuta es el del proyecto(Mis perris), por lo tanto este es el encargado de llamar
+#a los URL de Core y Accounts
 urlpatterns = [
     path('', include ('core.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-
+    path('accounts/', include('accounts.urls'))
 ]
 
 #Personalizacion de los titulos del administrador

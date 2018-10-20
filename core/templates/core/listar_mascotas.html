@@ -2,6 +2,7 @@
 
 {% block contenido %}
     <h2>Listado de mascotas</h2>
+    <br>
 
     <table>
         <tr>
@@ -27,6 +28,7 @@
                 <td>{{ a.estado}}</td>
                 <td>
                     <a href="{% url 'eliminar_mascota' a.id %}">Eliminar</a>
+                    <a href="{% url 'modificar_mascota' a.id %}">Modificar</a>
                 </td>
             </tr>
         {% endfor %}

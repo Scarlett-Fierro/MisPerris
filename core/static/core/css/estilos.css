@@ -48,16 +48,18 @@ header{
 */
 
 
-/* Esta clase es para el boton Enviar del formulario */
+/* Esta clase es para el boton Enviar del formulario de Postulante 
 .botonenviar{
     margin-left: 31%;
     width: 85px;
-}
+} Comente esta clase para que el boton quedara por defecto al lado izquierdo y asi no diera problemas en el responsive*/
 
-/* Esta clase es para el boton Ingresar del login */
-.botoningresar{
-    width: 103px;
-}
+
+/* Esta clase es para el boton Guardar del formulario de Mascota 
+.botonguardar{
+    margin-left: 31%;
+    width: 105px;
+}Comente esta clase para que el boton quedara por defecto al lado izquierdo y asi no diera problemas en el responsive*/
 
 
 /* La clase ROW es la que envuelve al formulario completo y esta clase se saca inspeccionando la interfaz del formulario, yo no lo hice xd */

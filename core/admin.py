@@ -1,5 +1,5 @@
 from django.contrib import admin
-from.models import Region, Ciudad, TipoVivienda, Postulante
+from.models import Region, Ciudad, TipoVivienda, Postulante, Raza, Estado, Mascota
 # Register your models here.
 
 #Aqui vamos a hacer que las entidades(clases) nos liste mas atributos, vamos a extender una entidad
@@ -14,9 +14,15 @@ class PostulanteAdmin(admin.ModelAdmin):
     #Aqui vamos a agregar filtros
     list_filter = ['region', 'ciudad']
 
+class MascotaAdmin(admin.ModelAdmin):
+    list_display = ('nombreMascota', 'raza', 'genero', 'fechaIngreso', 'fechaNacimientoMascota', 'foto', 'estado')
+
 
 
 admin.site.register(Region)
 admin.site.register(Ciudad)
 admin.site.register(TipoVivienda)
 admin.site.register(Postulante, PostulanteAdmin) #Le agregamos el PostulanteAdmin ya que extendimos esta entidad
+admin.site.register(Raza)
+admin.site.register(Estado)
+admin.site.register(Mascota, MascotaAdmin)

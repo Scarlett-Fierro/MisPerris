@@ -1,0 +1,27 @@
+<!-- AQUI VAMOS A HACER EL FORMULARIO DE REGISTRO -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registro de usuario</title>
+</head>
+
+<body>
+
+    <h2>Registro de usuario</h2>    
+
+    <form action="" method="POST">
+
+        {% csrf_token %} <!--TODOS los formulario los tiene que llevar por seguridad-->
+        {{ form.as_p }} <!--Con esto se van a imprimir todos los campos que vienen desde Django-->
+        <input type="submit" value="Registrar">
+    </form>
+
+    <!-- Estamos imprimiendo la variable que hicimos en Views de accounts -->
+    <h3>{{ mensaje }}</h3>
+
+</body>
+</html>

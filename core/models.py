@@ -74,6 +74,15 @@ class Mascota(models.Model):
     fechaNacimientoMascota = models.DateField(null=True)
     foto = models.ImageField()
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombreMascota
+        return self. raza
+        return self.genero
+        return self.fechaIngreso
+        return self.fechaNacimiento
+        return self.foto
+        return self.estado
     
 
 
