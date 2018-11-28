@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% load pwa %}
+
 <head>
+    {% progressive_web_app_meta %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mis Perris</title>
+    <!-- <title>Mis Perris</title> -->
 
     {% load static %}
 
@@ -21,6 +25,85 @@
         <!-- Luego de ejecutar los enlaces de arriba, aqui se van a ejecutar los enlaces respectivos segun el bloque que se llame  -->
     {% endblock javascript %}
 
+     <!--Con esto estamos inicializando el FireBase, esto sirve para las notificaciones Push  -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCXx90-U1o8m-229WtLhy9j7uiN3OShgGY",
+        authDomain: "misperris-93ffb.firebaseapp.com",
+        databaseURL: "https://misperris-93ffb.firebaseio.com",
+        projectId: "misperris-93ffb",
+        storageBucket: "misperris-93ffb.appspot.com",
+        messagingSenderId: "182082072387"
+    };
+    firebase.initializeApp(config);
+
+    //Obtenemos un objeto messages
+    const messaging = firebase.messaging(); // cost es una variable que nunca cambia en Java
+    //Vamos a registrar nuesto Servicewok con Firebase
+    navigator.serviceWorker.register('./serviceworker.js')
+
+    //Una vez que el serviceworker es registrado se va a ejecutar Then con la funcion
+    .then(function(register){
+        //Le pasamos el objeto registrado con el serviceworker a Firebase
+        messaging.useServiceWorker(register);
+
+        //Mostramos al usuario una ventana para preguntarle si acepta 
+        //que le enviemos notificaciones al navegador
+        messaging
+        .requestPermission()
+        
+        //Este Then se ejecutara en el caso que el usuaio haya aceptado que le mostremos notificaciones
+        .then(function(){
+            console.log("El usuario acepto el envio de notificaciones (: ");
+            //Una vez aceptado el permiso, se genera un Token unico que nos identifica como usuarios
+            //todos los Token son diferentes, nunca pueden repetirse
+            return messaging.getToken();//Esta linea genera el Token. Ejemplo de un token: p23jl32kj4lk2j45hlk3l2h234
+        })
+        //Este segundo The recibe el Token generado en el anterior
+        .then(function(token){
+            console.log(token);
+            //En este paso es necesario enviar el token a Django o aplicacion para almacenarlo
+            //enviamos el token
+
+            fetch('api/agregar-token/', {
+                method:'POST',
+                body:JSON.stringify({
+                    'token':token //Creamos variable token que va a co5rresponder al token que se creo
+                })
+            })
+
+            .then(function(){
+                console.log("El token ha sido enviado")
+            })
+        })
+        //Los the anterioes solo se ejecutaran cuando el usuario haya aceptado el envio de notificaciones
+        .catch(function(err){
+            //Este catch se ejecuta cuando el usuario no haya aceptado que le mostremos notificaciones
+            console.log("El usuario no ha aceptado el envio de notificaciones : ", err)
+        })
+    })
+
+    //Vamos a programar la recepcion del mensaje PUSH, recibimos el mensaje que viene desde FireBase
+    messaging.onMessage(function(payload){
+        //Esta funcion se ejecuta cuando se recibe la notificacion
+        //dentro de Payload viene el mensaje
+
+
+        var options = {
+            body:payload.notification.body,
+            icon:payload.notification.icon
+        }
+
+        var title = payload.notification.title
+        //Cuando llegue el mensaje mostramos la notificacion
+        var mensaje = new Notification(title, options)
+
+    })
+    </script>
+
 </head>
 
 <body>
@@ -32,42 +115,47 @@
                 <a href="{% url 'home' %}">Inicio</a>
             </li>
 
-            <li>
-                <a href="#">Quienes somos</a> <!-- El "#" se usa para que salga la manito al pasar el cursor por la lista, pero que se mantenga en el sitio (la pagina)  -->
-            </li>
-
-            <li>
+            {% comment %} <li>
                 <a href="#">Servicios</a>
-            </li>
-            <li>
-                <a href="{% url 'formulario' %}">Contáctanos</a>
-            </li>
-
+            </li> {% endcomment %}
+            
             {% if request.user.is_authenticated %} <!--Este if es para que el Cerrar sesion solo salga 
             cuando el usuario tenga una sesion iniciada-->
             <li>
                 <a href="{% url 'logout' %}">Cerrar sesion</a> <!--Cuando se apreta este boton se sale-->
             </li>
+            <li>
+                <a href="{% url 'formulario_mascota' %}">Agregar mascota</a>
+            </li>
+            <li>
+                <a href="{% url 'listado_mascotas' %}">Listar</a>
+            </li>
+            <li>
+                <a href="">{{ request.user.first_name }}</a>
+            </li>
             {% else %}
             <li>
                 <a href="{% url 'login' %}">Iniciar sesion</a> <!--Cuando se apreta este boton se va a la pestaña de login-->
             </li>
-
             <li>
-                <a href="{% url 'register' %}">Registrar</a>
+                <a href="{% url 'formulario' %}">Contáctanos</a>
             </li>
+
+            <!-- <li>
+                <a href="{% url 'register' %}">Registrar</a> Esto es para registrarse pero no habia que hacerlo xd
+            </li> -->
             {% endif%}
 
         </ul>
     </header>
 
-    {% include 'core/slider.html' %}
+    
 
     {% block contenido %}
         <!--Aqui se va a ejecutar lo que este dentro de los otros block llamados contenido -->
     {% endblock contenido %}
    
-    {% include 'core/galeria.html' %}
+    
 
     <footer>
         <p class="desarrollo_mobil_web">Desarrollo Web y Mobil</p>

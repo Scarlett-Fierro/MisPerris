@@ -17,8 +17,22 @@ header{
     height: 90px;
     background:rgb(109, 204,170);
     opacity: 0.8;
-    
 }
+
+.divgaleria{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+} 
+
+.imagenesgaleria{
+    object-fit: contain;
+    width: 30%;
+    margin: 1%;
+    border-radius:20px; 
+    border: solid white;
+} 
+
 
 /* 
 
@@ -37,6 +51,13 @@ header{
 .sololetra{
     font-weight: bold;
 }
+
+.sololetrablanca{
+    font-weight: bold;
+    color: white;
+}
+
+
 
 /*
 .soloform{
@@ -64,18 +85,48 @@ header{
 
 /* La clase ROW es la que envuelve al formulario completo y esta clase se saca inspeccionando la interfaz del formulario, yo no lo hice xd */
 .row{
-    width: 101%;
-    background-color: rgb(109, 204, 170);
-    padding-top: 50px;
-    padding-bottom: 50px;
+    width: 100%;
+    background-color: rgb(109, 204,170);
+    /* padding-top: 50px;
+    padding-bottom: 50px; */
     font-weight: bold;
 }
 
-.logo{
+
+.fondologin{
+    background-color: rgb(109, 204, 170);
+}
+
+
+
+/* .divlistarmascotas{
+    width: 100%;
+    background-color: rgb(109, 204, 170);
+} */
+
+
+.divmodforformlog{
+    width: 100%;
+    background-color: rgb(109, 204, 170);
+}
+
+.dentrodivmodforformlog{
+    padding-left: 5%;
+}
+
+
+/* .logo{
     width: 25%; 
     height: 70px;
     margin-top: 1%;
     margin-left: 1%;
+} */
+
+.logo{
+    width: 300px; 
+    height: 60px;
+    margin-top: 10px;
+    margin-left: 10px; /*COMENTE LA CLASE LOGO DE ARRIBA YA QUE NO ME CALZABA*/
 }
 
 .navegacion{
@@ -317,13 +368,14 @@ footer{
 
 }
 
-.contenido2 > div{
+/* .contenido2 > div{
     width: 33%;
-}
+} */
 
 .contenido2 img{
     border-radius:20px;
 }
+
 
 
 .Oso{
@@ -387,10 +439,10 @@ footer{
         height: auto;
     } */
 
-    .logo{
+    /* .logo{
         width: auto;
         height: auto;
-    }
+    } */
 
     .imagen_landing{
         height: auto;
@@ -427,7 +479,7 @@ footer{
    
 
     header{
-        height: 350px;
+        height: 395px;
     }
 
     .navegacion{
@@ -524,10 +576,10 @@ footer{
 
 @media(min-width:1025px) {
 
-    .logo{
+    /* .logo{
         width: auto;
         height: auto;
-    }    
+    }     */
     
     .bx-caption{
         background-color: transparent !important;
@@ -543,10 +595,10 @@ footer{
 
 @media (min-width:1400px) {
 
-    .logo{
+    /* .logo{
         width: auto;
         height: auto;
-    }
+    } */
 
     .bx-caption {
         margin-left: 24%!important;
@@ -558,10 +610,10 @@ footer{
 
 @media(min-width:1600px) {
 
-    .logo{
+    /* .logo{
         width: auto;
         height: auto;
-    }
+    } */
 
     .bx-caption {
         margin-left:27%!important;

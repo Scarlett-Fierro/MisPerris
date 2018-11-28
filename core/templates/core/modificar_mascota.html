@@ -3,9 +3,10 @@
 {% load static %}
 
 {% block javascript %}
+    <title>Modificar Mascota</title>
     <script src="{% static 'core/js/validateJquery.js' %}"></script>
     <script src="{% static 'core/js/validacionesMensajes.js' %}"></script>
-    <script src="{% static 'core/js/validaciones.js' %}"></script>
+    <script src="{% static 'core/js/validaciones2.js' %}"></script>
     <script src="{% static 'core/js/validadorRut.js' %}" ></script>
     <script>
 
@@ -34,90 +35,120 @@
 {% endblock javascript %}
 
 {% block contenido %}
-    <div class="row">
+    <!-- <div class="row">
 
         <div class="col-md-3"></div>
-        <div class="col-md-9">
+        <div class="col-md-9"> -->
 
-            <form action="" method="POST" id="idformulario_mascota">  <!--Que el "action" este vacio va a hacer que cuando se aprete guardar todo los datos van a ser enviados al Views especificamente dentro del formulario_mascota-->
-                {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
+    {% load grouptags %}
 
-                <!--El Type "hidden" es para que el usuario no lo vea-->
-                <input type="hidden" name="txtId" id="txtId" value="{{ mascota.id }}">  <!-- mascota, es la variable que esta siendo enviada desdde el View(controlador)-> def modificar_mascota-->
+            <div class="divmodforformlog sololetra" >
 
-                <div class="col">
+                    <div style="display:none;" >{{request.user|list_groups}}</div>
+                    {% if request.user|has_group:"voluntarios" %} 
+                                    <div class="alert alert-warning text-center" >
+                                        <strong>Advertencia : </strong> No está autorizado para modificar mascotas.
+                                    </div>     
+                    {% else %}  
 
-                    <!-- <h2>Formulario Mascota</h2>
-                    <br>
-                    <br> QUEDA LA CAGA CUANDO LO PONGO-->
-                    
-                    <label for="">Nombre mascota</label>
-                    <br>
-                    <input type="text" name="txtNombreMascota" id="txtNombreMascota" class="form-control col-9 sololetra" value="{{ mascota.nombreMascota }}">
-                    <br>
-                    <label for="">Raza</label>
-                    <br>
-                    <select name="cboRaza" id="cboRaza" class="form-control col-9 sololetra" value="{{ mascota.razas }}">
-                        <option value="">Seleccionar</option>
+                    <div class="dentrodivmodforformlog" >
 
-                            {% for r in razas %}
+                            <br>
+                            <h2 class="sololetra" >Modificar Mascota</h2>
+                            <br>
+                
+                            <form action="" method="POST" id="id_modificar_formulario_mascota" enctype="multipart/form-data">  <!--Que el "action" este vacio va a hacer que cuando se aprete guardar todo los datos van a ser enviados al Views especificamente dentro del formulario_mascota-->
+                                {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
+                
+                                <!--El Type "hidden" es para que el usuario no lo vea-->
+                                <input type="hidden" name="txtId" id="txtId" value="{{ mascota.id }}">  <!-- mascota, es la variable que esta siendo enviada desdde el View(controlador)-> def modificar_mascota-->
+                
+                                <!-- <div class="col"> -->
+                
+                                    <!-- <h2>Formulario Mascota</h2>
+                                    <br>
+                                    <br> QUEDA LA CAGA CUANDO LO PONGO-->
+                                    
+                                    <label for="">Nombre mascota</label>
+                                    <br>
+                                    <input type="text" name="txtNombreMascota" id="txtNombreMascota" class="form-control col-9 sololetra" value="{{ mascota.nombreMascota }}">
+                                    <br>
+                                    <label for="">Raza</label>
+                                    <br>
+                                    <select name="cboRaza" id="cboRaza" class="form-control col-9 sololetra">
+                                        <option value="">Seleccionar</option>
+                
+                                            {% for r in razas %}
+                                                <option
+                                                {% if r.id == mascota.raza.id %}
+                                                    {{'selected'}}
+                                                {% endif %}
+                                                class="sololetra" value="{{ r.id }}">{{ r.nombreRaza }}</option> <!--Este for se hace para recorrer la variable razas que se creo en Views-->
+                                            {% endfor %}
+                
+                                    </select>
+                                    <br>
+                                    <label for="">Genero</label>
+                                    <br>
+                                    <select name="cboGenero" id="cboGenero" class="form-control col-9 sololetra">
+                                        <option value="">Seleccionar</option>
+                
+                                            {% for g in generos %}
+                                                <option
+                                                {% if g.id == mascota.genero.id %}
+                                                    {{'selected'}}
+                                                {% endif %}
+                                                class="sololetra" value="{{ g.id }}">{{ g.genero_formato }}</option> <!--Este for se hace para recorrer la variable razas que se creo en Views-->
+                                            {% endfor %}
+                
+                                    </select>
+                                    <br>
+                                    <label for="">Fecha Ingreso</label>
+                                    <br>
+                                    <input type="date" name="dateFechaIngreso" id="dateFechaIngreso" class="form-control col-9 sololetra" value="{{ mascota.fecha_ingreso_formato }}">
+                                    <br>
+                                    <label for="">Fecha Nacimiento</label>
+                                    <br>
+                                    <input type="date" name="dateFechaNacimientoMascota" id="dateFechaNacimientoMascota" class="form-control col-9 sololetra" value="{{ mascota.fecha_nacimiento_formato }}"> 
+                                    <br>
+                                    <label for="text">Foto</label>
+                                    <br>
+                                    <input type="file" name="fileFoto" id="fileFoto" class="form-control col-9 sololetra" value="{{ mascota.foto }}">
+                                    <br>
+                                    <label for="">Estado</label>
+                                    <br>
+                                    <select name="cboEstado" id="cboEstado" class="form-control col-9 sololetra">
+                                        <option value="">Seleccionar</option>
+                
+                                        {% for e in estados %}
+                                            <option
+                                            {% if e.id == mascota.estado.id %}
+                                                {{'selected'}}
+                                            {% endif %}
+                                             class="sololetra" value="{{ e.id }}">{{ e.nombreEstado }}</option>
+                                        {% endfor %}
+                
+                                    </select>
+                                    <br>
+                                    <br>
+                                    <input type="submit" name="btnModificar" id="btnModificar" class="btn btn-dark" value="Modificar" >
+                                    <br>
+                                    <br>
+                
+                                <!-- </div> -->
+                                
+                            </form>
+                    </div>
 
-                                <option
-                                {% if r.id == mascota.raza.id %}
-                                    {{'selected'}}
-                                {% endif %}
-                                class="sololetra" value="{{ r.id }}">{{ r.nombreRaza }}</option> <!--Este for se hace para recorrer la variable razas que se creo en Views-->
-                            
-                            {% endfor %}
+                    <h3>{{ mensaje }}</h3>
+                    {% endif %}
+                    {% endblock contenido %}  
+                      
+            </div>
 
-                    </select>
-                    <br>
-                    <label for="">Genero</label>
-                    <br>
-                    <select name="cboGenero" id="cboGenero" class="form-control col-9 sololetra">
-                        <option value="">Seleccionar</option>
-                        <option class="sololetra" value="M">Macho</option>
-                        <option class="sololetra" value="H">Hembra</option>
-                    </select>
-                    <br>
-                    <label for="">Fecha Ingreso</label>
-                    <br>
-                    <input type="date" name="dateFechaIngreso" id="dateFechaIngreso" class="form-control col-9 sololetra" value="{{ mascota.fechaNacimientoMascota }}">
-                    <br>
-                    <label for="">Fecha Nacimiento</label>
-                    <br>
-                    <input type="date" name="dateFechaNacimientoMascota" id="dateFechaNacimientoMascota" class="form-control col-9 sololetra" value="{{ mascota.fechaIngreso}}"> 
-                    <br>
-                    <label for="text">Foto</label>
-                    <br>
-                    <input type="text" name="txtFoto" id="txtFoto" class="form-control col-9 sololetra" value="{{ mascota.foto }}">
-                    <br>
-                    <label for="">Estado</label>
-                    <br>
-                    <select name="cboEstado" id="cboEstado" class="form-control col-9 sololetra" value="{{ mascota.estados }}">
-                        <option value="">Seleccionar</option>
+            
+            
+          
 
-                        {% for e in estados %}
-                            <option
-                            {% if e.id == mascota.estado.id %}
-                                {{'selected'}}
-                            {% endif %}
-                             class="sololetra" value="{{ e.id }}">{{ e.nombreEstado }}</option>
-                        {% endfor %}
-
-                    </select>
-                    <br>
-                    <br>
-                    <input type="submit" name="btnModificar" id="btnModificar" class="btn btn-success" value="Modificar" >
-                    <br>
-                    <br>
-
-                </div>
-
-            </form>
-
-            <h3>{{ mensaje }}</h3>
-
-        </div>
-    </div>
-{% endblock contenido %}
+        <!-- </div>
+    </div> -->

@@ -1,48 +1,101 @@
 {% extends 'core/base.html' %}
 
+<!-- {% load static %} -->
+
+{% block javascript %}
+    <title>Listado Mascotas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+{% endblock javascript %}
+
 {% block contenido %}
-    <h2>Listado de mascotas</h2>
-    <br>
 
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Raza</th>
-            <th>Genero</th>
-            <th>Fecha Ingreso</th>
-            <th>Fecha Nacimiento</th>
-            <th>Foto</th>
-            <th>Estado</th>
-            <th>Opciones</th>
-        </tr>
+{% load grouptags %}
 
-        {% for m in mascotas %} <!--Esta variable "mascotas" es la que traje de Views, es la variable que contiene todas las mascotas-->
-        <!--y el Views lo mando a buscar a la base de datos-->
-            <tr>
-                <td>{{ a.nombreMascota }}</td>
-                <td>{{ a.raza}}</td>
-                <td>{{ a.genero}}</td>
-                <td>{{ a.fechaIngreso}}</td>
-                <td>{{ a.fechaNacimientoMascota}}</td>
-                <td>{{ a.foto}}</td>
-                <td>{{ a.estado}}</td>
-                <td>
-                    <a href="{% url 'eliminar_mascota' a.id %}">Eliminar</a>
-                    <a href="{% url 'modificar_mascota' a.id %}">Modificar</a>
-                </td>
-            </tr>
-        {% endfor %}
-        
-    </table>
+    <!-- <div class="row">
 
-    {% if mensajes %}
-    
-        {% for m in mensajes  %}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                    <div class="col">
+                        <h2 class="sololetra" >Listado Mascotas</h2>
+                    </div>
+            </div>
+    </div> -->
 
-        <div>{{ m }}</div>
-        
-        {% endfor %}
+    {% comment %} <div class="divlistarmascotas"> {% endcomment %}
 
-    {% else %}
+        <div class="divmodforformlog sololetra" >
+
+
+        <div style="display:none;" >{{request.user|list_groups}}</div>
+        {% if request.user|has_group:"voluntarios" %} 
+                        <div class="alert alert-warning text-center" >
+                            <strong>Advertencia : </strong> No está autorizado para listar mascotas.
+                        </div>     
+        {% else %} 
+
+            <div class="dentrodivmodforformlog" >
+
+                <br>
+                <br>
+                <h2 class="sololetra" >Listado Mascotas</h2>
+                <br>
+                <br>
+                <table class="sololetra table table-responsive table-hover">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Raza</th>
+                        <th>Genero</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Foto</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+            
+                    {% for m in mascotas %} <!--Esta variable "mascotas" es la que traje de Views, es la variable que contiene todas las mascotas-->
+                    <!--y el Views lo mando a buscar a la base de datos-->
+                        <tr>
+                            <td>{{ m.nombreMascota }}</td> 
+                            <td>{{ m.raza}}</td>
+                            <td>{{ m.genero_formato }}</td>
+                            <td>{{ m.fechaIngreso}}</td>
+                            <td>{{ m.fechaNacimientoMascota}}</td>
+                            <td>
+                                <!-- {% if m.foto == None %}
+                                <img src="{{m.nombreMascora.url}}" alt="{{ m.foto }}.jpg" width="150px">
+                                {% else %} -->
+                                <img src="{{m.foto.url}}" alt="{{ m.foto }}.jpg" width="150px">
+                                <!-- {% endif %} -->
+                            </td>
+                            <td>{{ m.estado}}</td>
+                            <td>
+                                <a href="{% url 'eliminar_mascota' m.id %}">Eliminar</a>
+                                <a href="{% url 'modificar_mascota' m.id %}">Modificar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    
+                </table>
+            
+            
+            <br>
+            <br>
+
+            {% if messages %}
+            
+                {% for m in messages  %}
+
+                <!-- <div class="sololetra">{{ m }}</div> -->
+                <h3 class="sololetra" >{{ m }}</h3>
+                
+                {% endfor %}
+
+            {% else %}
+            {% endif %}
+                <br>
+                <br>
+             </div>   
+        </div>        
+            {% comment %} </div> {% endcomment %}
     {% endif %}
 {% endblock contenido %}

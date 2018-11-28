@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block javascript %}
+    <title>Formulario Postulante</title>
+    <script src="{% static 'core/js/chaincombo.js' %}"></script>
     <script src="{% static 'core/js/validateJquery.js' %}"></script>
     <script src="{% static 'core/js/validacionesMensajes.js' %}"></script>
     <script src="{% static 'core/js/validaciones.js' %}"></script>
@@ -33,96 +35,116 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 {% endblock javascript %}
 
-
 {% block contenido %}
-    <div class="row">
+
+{% load grouptags %}
+
+    <!-- <div class="row">
 
         <div class="col-md-3"></div>
-        <div class="col-md-9">
+        <div class="col-md-9"> -->
+        <div class="divmodforformlog sololetra" >
 
-            <form action="" method="POST" id="idformulario">
-                {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
-    
-                <div class="col">
+                <div style="display:none;" >{{request.user|list_groups}}</div>
+                    {% if request.user|has_group:"voluntarios" %} 
+                                    <div class="alert alert-warning text-center" >
+                                        <strong>Advertencia :</strong> No está autorizado para completar el formulario de Postulante.
+                                    </div>     
+                    {% else %} 
 
-
-                    <label for="">Correo electronico</label>
+            <div class="dentrodivmodforformlog" >
                     <br>
-                    <input type="text" name="txtCorreoElectronico" id="txtCorreoElectronico" class="form-control col-9 sololetra">
-                    <br>
-                    <label for="">Rut</label>
-                    <br>
-                    <input type="text" name="txtRut" id="txtRut" class="form-control col-9 sololetra"> <h6 id="mensajerut" class="sololetra">  </h6>
-                        <script>
-                            $("input#txtRut").rut({formatOn: 'keyup'})
-                                    .on('rutInvalido', function(){ 
-                                        //alert('Rut inválido')
-                                        $("#mensajerut").html("rut invalido");
-                                    });
-                            
-                            $("input#txtRut").rut({formatOn: 'blur', validateOn: 'blur'})
-                                    .on('rutInvalido', function(){ 
-                                        $("#mensajerut").html("rut invalido");
-                                    });   
-                        </script>
-                    <br>
-                    <label for="">Nombre Completo</label>
-                    <br>
-                    <input type="text" name="txtNombreCompleto" id="txtNombreCompleto" class="form-control col-9 sololetra" onkeypress="return soloLetras(event)" >
-                    <br>
-                    <label for="">Fecha Nacimiento</label>
-                    <br>
-                    <input type="date" name="dateNacimiento" id="dateNacimiento" class="form-control col-9 sololetra">
-                    <br>
-                    <label for="">Telefono de contacto</label>
-                    <br>
-                    <input type="number" name="txtTelefono" id="txtTelefono" class="form-control col-9 sololetra">
-                    <br>
-                    <label for="">Región</label>
-                    <br>
-                    <select name="cboRegion" id="cboRegion" class="form-control col-9 sololetra">
-                    <option value="">Seleccionar</option>
-
-                        {% for r in regiones %}
-                            <option class="sololetra" value="{{ r.id }}">{{ r.nombreRegion }}</option>
-                        {% endfor %}
-
-                    </select>
-                    <br>
-                    <label for="">Ciudad</label>
-                    <br>
-                    <select name="cboCiudad" id="cboCiudad" class="form-control col-9 sololetra" disabled="true">
-                    <option value="">Seleccionar</option>
-
-                        {% for c in ciudades %}
-                            <option class="sololetra" value="{{ c.id }}">{{ c.nombreCiudad }}</option>
-                        {% endfor %}    
-
-                    </select>
-                    <br>
-                    <label for="">Tipo vivienda</label>
-                    <br>
-                    <select name="cboVivienda" id="cboVivienda" class="form-control col-9 sololetra">
-                    <option value="">Seleccionar</option>
-
-                        {% for t in tiposViviendas %}
-                            <option class="sololetra" value="{{ t.id }}">{{ t.nombreVivienda }}</option>
-                        {% endfor %}
-
-                    </select>
-                    <br>
-                    <br>
-                    <input type="submit" name="btnEnviar" id="btnEnviar" class="btn btn-dark botonenviar" >
-                    <br>
+                    <h2 class="sololetra" >Formulario Postulante</h2>
                     <br>
 
-                </div>
+                <form action="" method="POST" id="idformulario">
+                    {% csrf_token %} <!--csrd_token Evita que los datos vengan desde una fuente externa al navegador-->
+        
+                        <!-- <div class="col"> -->
 
-            </form>
 
-            <h3>{{ mensaje }}</h3>
+                            <label for="">Correo electronico</label>
+                            <br>
+                            <input type="text" name="txtCorreoElectronico" id="txtCorreoElectronico" class="form-control col-9 sololetra">
+                            <br>
+                            <label for="">Rut</label>
+                            <br>
+                            <input type="text" name="txtRut" id="txtRut" class="form-control col-9 sololetra"> <h6 id="mensajerut" class="sololetra">  </h6>
+                                <script>
+                                    $("input#txtRut").rut({formatOn: 'keyup'});
+                                    $("input#txtRut").rut({formatOn: 'blur', validateOn: 'blur'})
+                                            .on('rutInvalido', function(){ 
+                                                $("#mensajerut").html("rut invalido");
 
+                                            });   
+                                    $("input#txtRut").rut({formatOn: 'blur', validateOn: 'keyup'})
+                                    .on('rutValido', function(){ 
+                                        $("#mensajerut").html("");
+
+                                        });  
+                                </script>
+                            <br>
+                            <label for="">Nombre Completo</label>
+                            <br>
+                            <input type="text" name="txtNombreCompleto" id="txtNombreCompleto" class="form-control col-9 sololetra" onkeypress="return soloLetras(event)" >
+                            <br>
+                            <label for="">Fecha Nacimiento</label>
+                            <br>
+                            <input type="date" name="dateNacimiento" id="dateNacimiento" class="form-control col-9 sololetra">
+                            <br>
+                            <label for="">Telefono de contacto</label>
+                            <br>
+                            <input type="number" name="txtTelefono" id="txtTelefono" class="form-control col-9 sololetra">
+                            <br>
+                            <label for="">Región</label>
+                            <br>
+                            <select name="cboRegion" id="cboRegion" class="form-control col-9 sololetra cboRegion">
+                            <option class="sololetra" value="">Seleccionar</option>
+
+                                {% for r in regiones %}
+                                    <option class="sololetra" value="{{ r.id }}">{{ r.nombreRegion }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <br>
+                            <label for="">Ciudad</label>
+                            <br>
+                            <select name="cboCiudad" id="cboCiudad" class="form-control col-9 sololetra cboCiudad" disabled>
+                            <option class="sololetra" value="">Seleccionar</option>
+
+                                {% for c in ciudades %}
+                                    <option class="sololetra" value="{{ c.id }}">{{ c.nombreCiudad }}</option>
+                                {% endfor %}    
+
+                            </select>
+                            <br>
+                            <label for="">Tipo vivienda</label>
+                            <br>
+                            <select name="cboVivienda" id="cboVivienda" class="form-control col-9 sololetra">
+                            <option value="">Seleccionar</option>
+
+                                {% for t in tiposViviendas %}
+                                    <option class="sololetra" value="{{ t.id }}">{{ t.nombreVivienda }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <br>
+                            <br>
+                            <input type="submit" name="btnEnviar" id="btnEnviar" class="btn btn-dark botonenviar" >
+                            <br>
+                            <br>
+
+                        
+
+                    </form>
+                    <h3 class="sololetra" >{{ mensaje }}</h3>
+                <br>
+            </div>
+                
+            {% endif %}
+      
+                {% endblock contenido %}
+
+  
         </div>
-    </div>
-{% endblock contenido %}
    

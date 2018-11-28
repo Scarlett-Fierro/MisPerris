@@ -10,7 +10,15 @@
 
 <div class="contenido2">
 
-    <div>
+    <div class="divgaleria">
+
+    
+    {% for m in mascotasGaleria %}
+        <img class="imagenesgaleria" src="{{ m.foto.url }}"  alt="{{ m.nombreMascota }}.jpg" title="Hola mi nombre es {{ m.nombreMascota }} y busco hogar">
+    {% endfor %}
+
+    </div>
+    <!-- <div>
         <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Oso.jpg' %}"><img class="Oso" title="El es Oso es un perro muy tierno y dulce" src="{%static 'core/img/rescatados/Oso.jpg' %}"></a>
         <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Maya.jpg' %}"><img class="Maya" title="Ella es Maya, es muy pequeña pero muy juguetona" src="{%static 'core/img/rescatados/Maya.jpg' %}"></a>
         <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Wifi.jpg' %}"><img class="Wifi" title="El es Wifi, y como bien dice su nombre tendra una conexion unica contigo" src="{%static 'core/img/rescatados/Wifi.jpg' %}"></a>
@@ -24,6 +32,6 @@
     <div>
         <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Bigotes.jpg' %}"><img class="Bigotes" title="El es bigotes y como te das cuenta, tendras que cuidar tus peluches" src="{%static 'core/img/rescatados/Bigotes.jpg' %}"></a>
         <a data-fancybox="gallery" href="{%static 'core/img/rescatados/Luna.jpg' %}"><img class="Luna" title="Ella es Luna, es una linda perrito que te acompañara a todos lados" src="{%static 'core/img/rescatados/Luna.jpg' %}"></a>  
-    </div>
+    </div> -->
 
 </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 #Con este import estamos trayendo el formulario
 from .forms import CustomUserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -23,7 +24,7 @@ def register(request):
             form.save()
             variables['mensaje'] = "Usuario registrado (;"
         else:
-            variables['mensaje'] = "No se ha podido registra :("
+            variables['mensaje'] = "No se ha podido registrar :("
             #Si hay errores de validacion debemos volver a enviar el formulario al template, ya que este
             #lleva consigo los mensajes de validacion
             variables['form'] = form

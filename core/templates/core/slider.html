@@ -4,17 +4,23 @@
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="{%static 'core/js/enchulado.js' %}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    
 {% endblock javascript %}
 
 
 <div class="landing">
-
+        <br>
     <div class="slider">
 
+        {% for ms in mascotasSlider %}
         <div>
-            <img title= ' "El es Copo, un buen amigo que te acompañará siempre a todos lados" ' class="imagen_landing" src="{%static 'core/img/perro.png' %}" alt="Perrito">
+            <img class="imagen_landing" src="{{ ms.foto.url }}" alt="Perrito">
         </div>
-        <div>
+            
+        {% endfor %}
+
+       
+        <!-- <div>
             <img title=' "Estamos felices de tener a Tom en casa. Es un super fiel compañero" ' class="imagen_landing" src="{%static 'core/img/adoptados/Tom.jpg' %}" alt="Perrito Tom">
         </div>
         <div>
@@ -22,7 +28,7 @@
         </div>
         <div>
             <img title=' "Duque se ha transformado en mi compañero de aventuras" ' class="imagen_landing" src="{%static 'core/img/adoptados/Duque.jpg' %}" alt="Perrito Duque">
-        </div>
+        </div> -->
 
     </div>
 

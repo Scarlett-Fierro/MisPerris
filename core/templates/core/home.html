@@ -1,10 +1,15 @@
 {% extends 'core/base.html' %}
+{% block javascript %}
+    <title>Pagina Principal</title>
+{% endblock javascript %}
 
 {% load static %}
 
 {% block contenido %}
 
+{% include 'core/slider.html' %}
 <div class="contenido">
+
     <br>
     <br>
     <div>
@@ -35,6 +40,6 @@
 </div>
 
 
-
+{% include 'core/galeria.html' %}
 
 {% endblock contenido %}

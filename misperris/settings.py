@@ -40,6 +40,9 @@ LOGOUT_REDIRECT_URL = "/accounts/login"
 
 # Application definition
 
+SOCIAL_AUTH_FACEBOOK_KEY = '707775829596784' #App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '8a5fe6e970269b8cd96d97d53d67e099' #App Secret
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,7 +53,15 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig', #CoreConfig es una clase que se encuentra en apps y se pone aqui para
     #cambiarle el nombre a un titulo de algo de Django, solo para que se entienda mejor
     'accounts', #Estamos cargando la aplicacion Accounts para el login
+    'social_django', #Esto es para usar con facebook
+    'crispy_forms', #Es para usar el plugin de Boostrap y colocarselo automaticamente a los formularios  
+    'api',
+    'pwa',
+    'fcm_django',
 ]
+
+#Ahora le decimos al plugin crispy con que libreria el trabajará
+CRISPY_TEMPLATE_PACK = 'boostrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'misperris.urls'
@@ -77,6 +89,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -133,3 +147,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR , "media")
+MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+#Estos 2 lineas se ponen para que el usuario no tenga que ver errores que no tiene porque ver
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+#Le diremos a Django donde queda nuestro serviceworker
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js') 
+
+PWA_APP_NAME = "MisPerris"
+
+PWA_APP_ICONS = [
+    {
+        'src':'static/core/img/logoAplicacion.png',
+        'sizes':'160x160'
+    }
+]
+
+FCM_DJANGO_SETTINGS = {
+        "FCM_SERVER_KEY": "AAAAKmTv70M:APA91bH591BXGaGUrW4v6zxqvrSx63rArVj93q-2fYm3BI7oR5_9xZGVkLM71MiBwz90hNALah5FCwspdg9jWv5kgw-GniWa0Z0Jw6sO_5aZ_IN51WqNLESCTJ28AOrk-bT0QipTotlB",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": False,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": False,
+}
